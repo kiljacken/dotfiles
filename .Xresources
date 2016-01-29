@@ -15,8 +15,8 @@ Xft.hinting: true
 Xft.hintstyle: hintfull
 
 !-- Fonts --!
-URxvt.font:xft:DroidSansMonoDotted:size=10
-URxvt.boldfont:xft:DroidSansMonoDotted:size=10
+URxvt.font:xft:DroidSansMono:size=10
+URxvt.boldfont:xft:DroidSansMono:size=10
 !URxvt.letterSpace:-1
 
 !-- Scrollbar --!

@@ -16,7 +16,6 @@ general {
 
 order += "ipv6"
 order += "disk /"
-order += "disk /home"
 order += "run_watch DHCP"
 order += "wireless _first_"
 order += "ethernet ppp0"
