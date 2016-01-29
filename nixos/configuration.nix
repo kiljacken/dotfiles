@@ -53,9 +53,10 @@
       default = "i3";
     };
     displayManager = {
-      sessionCommands = ''
-        ${pkgs.i3status}/bin/i3status &
-        ${pkgs.networkmanagerapplet}/bin/nm-applet &
+      sessionCommands = with pkgs; ''
+        ${i3status}/bin/i3status &
+        ${networkmanagerapplet}/bin/nm-applet &
+        ${coreutils}/bin/sleep 30 && ${dropbox}/bin/dropbox &
       '';
     };
     desktopManager.xterm.enable = false;
@@ -76,6 +77,9 @@
     # Utils
     git
     wget
+
+    # Stuff
+    dropbox
   ];
 
   fonts = {
