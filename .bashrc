@@ -1,3 +1,4 @@
 # Customize prompt
-PROMPT_COLOR="32m"
-PS1="\033[$PROMPT_COLOR\]\u@\h \033[34m\]\w \\$\[\033[0m\] "
+COLOR_NAME_HOST="32m"
+COLOR_DIR="34m"
+PS1="\[\033[$COLOR_NAME_HOST\]\u@\h \[\033[$COLOR_DIR\]\w \\$\[\033[0m\] "

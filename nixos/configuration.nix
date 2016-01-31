@@ -10,7 +10,22 @@
       ./hardware-configuration.nix
     ];
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+
+    chromium = {
+      enablePepperFlash = true;
+      enableWideVine = true;
+    };
+
+    packageOverrides = pkgs: with pkgs; {
+      keepasshttp = callPackage ./pkgs/keepasshttp/default.nix { };
+      keepass = keepass.override {
+        # TODO: Not even on unstable yet
+        # plugins = [ pkgs.keepasshttp ];
+      };
+    };
+  };
 
   # Use the gummiboot efi boot loader.
   boot.loader.gummiboot.enable = true;
@@ -57,6 +72,7 @@
         ${i3status}/bin/i3status &
         ${networkmanagerapplet}/bin/nm-applet &
         ${coreutils}/bin/sleep 30 && ${dropbox}/bin/dropbox &
+        ${redshift}/bin/redshift -l 55.7:12.6 -t 5700:3600 -g 0.8 -m randr &
       '';
     };
     desktopManager.xterm.enable = false;
@@ -80,7 +96,13 @@
 
     # Stuff
     dropbox
+    chromium
+    keepass
+    redshift
+    keepasshttp
   ];
+
+  programs.bash.enableCompletion = true;
 
   fonts = {
     enableCoreFonts = true;
