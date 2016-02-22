@@ -19,11 +19,11 @@
     };
 
     packageOverrides = pkgs: with pkgs; {
-      keepasshttp = callPackage ./pkgs/keepasshttp/default.nix { };
-      keepass = keepass.override {
-        # TODO: Not even on unstable yet
-        # plugins = [ pkgs.keepasshttp ];
-      };
+      #keepasshttp = callPackage ./pkgs/keepasshttp/default.nix { };
+      #keepass = keepass.override {
+      #  # TODO: Not even on unstable yet
+      #  # plugins = [ pkgs.keepasshttp ];
+      #};
     };
   };
 
@@ -76,6 +76,15 @@
       '';
     };
     desktopManager.xterm.enable = false;
+    config = ''
+      Section "InputClass"
+          Identifier "touchpad"
+          MatchIsTouchpad "on"
+          Option "TapButton1" "1"
+          Option "TapButton2" "3"
+          Option "TapButton3" "2"
+      EndSection
+    '';
   };
 
   environment.systemPackages = with pkgs; [
@@ -83,6 +92,7 @@
     i3status
     dmenu
     rxvt_unicode-with-plugins
+    xorg.xbacklight
 
     # Networking
     networkmanagerapplet
@@ -92,14 +102,17 @@
 
     # Utils
     git
+    subversion
     wget
+    which
+    xclip
 
     # Stuff
     dropbox
     chromium
-    keepass
     redshift
-    keepasshttp
+    # keepass
+    # keepasshttp
   ];
 
   programs.bash.enableCompletion = true;
@@ -110,8 +123,7 @@
     enableGhostscriptFonts = false;
 
     fonts =  [
-      # TODO: Currently only on unstable
-      #pkgs.font-droid
+      pkgs.font-droid
     ];
   };
 

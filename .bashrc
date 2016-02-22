@@ -1,3 +1,6 @@
+# Setup colors
+$HOME/bin/base16-default.dark.sh
+
 # Customize prompt
 COLOR_NAME_HOST="32m"
 COLOR_DIR="34m"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # variables
 export GOPATH=$HOME/ark_go
@@ -37,19 +37,6 @@ for arg in $@; do
 	esac
 done
 
-# check llvm version
-check_llvm_version() {
-	which llvm-config &> /dev/null || die "No LLVM detected (llvm-config not in path)"
-
-	llvm_version=`llvm-config --version`
-	llvm_major=`echo $llvm_version | cut -d. -f1`
-	llvm_minor=`echo $llvm_version | cut -d. -f2`
-	llvm_revision=`echo $llvm_version | cut -d. -f3`
-	llvm_ver_joined="$llvm_major$llvm_minor$llvm_revision"
-
-	info "Found LLVM $llvm_major.$llvm_minor.$llvm_revision"
-}
-
 # setup gopath
 setup_gopath() {
 	[ -d $GOPATH ] || mkdir -p $GOPATH/{src,bin,pkg}
@@ -58,35 +45,24 @@ setup_gopath() {
 	info "Gopath established as: $GOPATH"
 }
 
-# checkout llvm
+# checkout llvm bindings
 checkout_llvm() {
-	check_llvm_version
-
-	info "Checking out llvm source-tree"
-	svn_path="https://llvm.org/svn/llvm-project/llvm/tags/RELEASE_$llvm_ver_joined/final"
-	svn co $svn_path $GOPATH/src/llvm.org/llvm || die "Failed to checkout llvm source"	
-	$GOPATH/src/llvm.org/llvm/bindings/go/build.sh
+        rm -rf $GOPATH/src/github.com/ark-lang/go-llvm
+        git clone git@github.com:ark-lang/go-llvm.git $GOPATH/src/github.com/ark-lang/go-llvm
 }
 
-# setup cgo
+# setup llvm bindings
 install_llvm() {
-	check_llvm_version
-
-	#info "Setting up CGO flags"
-	#export CGO_CPPFLAGS="`llvm-config --cppflags`"
-	#export CGO_LDFLAGS="`llvm-config --ldflags --libs --system-libs all`"
-	#export CGO_CXXFLAGS=-std=c++11
-
-	# install llvm bindings
-	info "Installing llvm bindings"
-	go install -v llvm.org/llvm/bindings/go/llvm || die "Failed to install llvm bindings to Gopath"	
+        cd $GOPATH/src/github.com/ark-lang/go-llvm
+        ./build.sh
+        cd -
 }
 
 # checkout ark
 checkout_ark() {
 	info "Fetching ark"
-	go get -v github.com/ark-lang/ark/... || die "Failed to fetch ark 
-source"
+        rm -rf $GOPATH/src/github.com/ark-lang/ark
+        git clone git@github.com:ark-lang/ark.git $GOPATH/src/github.com/ark-lang/ark
 }
 
 # setup ark
