@@ -4,10 +4,13 @@
 
 { config, pkgs, ... }:
 
+let
+  hostname = "devbox";
+in
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      (./machines + "/${hostname}.nix")
     ];
 
   nixpkgs.config = {
@@ -27,12 +30,8 @@
     };
   };
 
-  # Use the gummiboot efi boot loader.
-  boot.loader.gummiboot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   networking = {
-    hostName = "lapheater";
+    hostName = hostname;
     networkmanager.enable = true;
   };
 
@@ -99,6 +98,7 @@
 
     # Editors
     emacs
+    sublime3
 
     # Utils
     git

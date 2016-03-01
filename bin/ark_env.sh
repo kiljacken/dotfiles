@@ -68,6 +68,7 @@ checkout_ark() {
 # setup ark
 install_ark() {
 	info "Building ark"
+	go get -v github.com/ark-lang/ark/...
 	go install -v github.com/ark-lang/ark/... || die "Failed to build ark"
 }
 
