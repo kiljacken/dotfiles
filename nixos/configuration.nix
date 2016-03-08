@@ -22,6 +22,30 @@ in
     };
 
     packageOverrides = pkgs: with pkgs; {
+      i3 = stdenv.lib.overrideDerivation i3 (oldAttrs: rec {
+        buildInputs = [ git ];
+        # from nix-prefetch-git
+        src = fetchgit {
+          url = "http://github.com/Airblader/i3.git";
+          rev = "3764415988e3c4377d252e3e00c961d784940b67";
+          sha256 = "1qj5khsbsbss1xbq599v11mkqjswv3h1zcia86j2a6qsigjx1r8d";
+        };
+        # 3764415 = short git commit hash
+        postUnpack = ''
+            find .
+            echo -n "4.12 (2016-03-03, branch \\\"gaps-next\\\")" > ./i3-3764415/I3_VERSION
+            echo -n "4.12" > ./i3-3764415/VERSION
+        '';
+        # man doesn't get build, so don't try to copy?
+        postInstall = ''
+          wrapProgram "$out/bin/i3-save-tree" --prefix PERL5LIB ":" "$PERL5LIB"
+          #mkdir -p $out/man/man1
+          #cp man/*.1 $out/man/man1
+          for program in $out/bin/i3-sensible-*; do
+            sed -i 's/which/command -v/' $program
+          done
+        '';
+      });
       #keepasshttp = callPackage ./pkgs/keepasshttp/default.nix { };
       #keepass = keepass.override {
       #  # TODO: Not even on unstable yet
