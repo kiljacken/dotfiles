@@ -13,7 +13,7 @@
   boot.extraModulePackages = [ ];
 
   boot.loader = {
-    gummiboot.enable = "true";
+    gummiboot.enable = true;
     efi.canTouchEfiVariables = true;
   };
 

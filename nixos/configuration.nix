@@ -19,6 +19,7 @@ in
     chromium = {
       enablePepperFlash = true;
       enableWideVine = true;
+      enableNaCl = true;
     };
 
     packageOverrides = pkgs: with pkgs; {
@@ -53,6 +54,10 @@ in
       #};
     };
   };
+
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport = true;
+  hardware.opengl.driSupport32Bit = true;
 
   networking = {
     hostName = hostname;
@@ -137,6 +142,9 @@ in
     redshift
     # keepass
     # keepasshttp
+
+    # Gaimz
+    playonlinux
   ];
 
   programs.bash.enableCompletion = true;
