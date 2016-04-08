@@ -315,6 +315,13 @@
       <command>urxvt</command>
     </action>
   </keybind>
+
+  <!-- launch dmenu -->
+  <keybind key="A-d">
+    <action name="Execute">
+      <command>dmenu_run</command>
+    </action>
+  </keybind>
 </keyboard>
 
 <mouse>
