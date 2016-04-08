@@ -7,8 +7,8 @@ set $menu dmenu_run
 font pango:Droid Sans Mono 8
 output * bg /home/kiljacken/wallpaper.png fill
 
-#gaps inner 10
-#gaps outer 10
+gaps inner 5
+gaps outer 5
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -150,6 +150,7 @@ input 2:14:ETPS/2_Elantech_Touchpad {
 }
 
 for_window [title=".*JACK Audio Connection Kit.*"] floating enable
+for_window [title="ludus"] floating enable
 
 # base16-dark colors
 #set $base00 #181818
@@ -191,3 +192,5 @@ bar {
 #                urgent_workspace    $base08  $base08  $base05
 #        }
 }
+
+exec xrdb ~/.Xresources
