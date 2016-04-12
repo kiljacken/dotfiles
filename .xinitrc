@@ -2,13 +2,16 @@
 
 function wm() {
     xrdb -load ~/.Xresources &
-    xsetroot -name $1
+    xsetroot -name $1 &
 
-    combton -xb -o0
+    nvidia-persistenced &
+    mpd ~/config/mpd/mpd.conf &
 
     dropbox &
     synergy &
     tint2 &
+
+    feh --bg-scale ~/wallpaper.jpg
 
     exec $1
 }

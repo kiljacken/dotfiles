@@ -23,8 +23,11 @@ URxvt.boldfont:xft:DroidSansMono:size=8
 URxvt.scrollstyle: plain
 
 !-- Transparency --!
-urxvt*transparent: true
-urxvt*shading: 15
+!urxvt*transparent: true
+!urxvt*shading: 15
+urxvt*depth: 32
+urxvt*background: rgba:0000/0000/0200/c800
+
 
 !-- Colors --!
 ! Base16 Default
@@ -48,7 +51,7 @@ urxvt*shading: 15
 ! #define base0F #a16946
 
 *.foreground:   #d8d8d8
-*.background:   #181818
+!*.background:   #181818
 *.cursorColor:  #d8d8d8
 
 ! *.color0:       base00

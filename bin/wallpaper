@@ -1,5 +1,5 @@
 #!/bin/sh
-WALLPAPER="$HOME/Dropbox/wallpapers/monogatari-color/"
+WALLPAPER="/mnt/data/Dropbox/wallpapers/monogatari-color/"
 TIME="5m"
 while true; do
 	find $WALLPAPER -type f \( -name '*.jpg' -o -name '*.png' \) -print0 |
