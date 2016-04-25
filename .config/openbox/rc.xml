@@ -325,12 +325,12 @@
         <command>kfmclient openProfile filemanagement</command>
       </action>
     </keybind>
-    <!-- launch urxvt -->
+    <!-- launch urxvt
     <keybind key="A-Return">
       <action name="Execute">
         <command>urxvt</command>
       </action>
-    </keybind>
+    </keybind> -->
     <!-- launch dmenu -->
     <keybind key="A-d">
       <action name="Execute">

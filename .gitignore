@@ -4,3 +4,4 @@
 .emacs.d/url/
 .weechat/logs/
 .weechat/weechat.log
+.weechat/script/plugins.xml.gz

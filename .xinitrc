@@ -11,7 +11,7 @@ function wm() {
     synergy &
     tint2 &
 
-    feh --bg-scale ~/wallpaper.jpg
+    feh --bg-scale ~/wallpaper.png
 
     exec $1
 }

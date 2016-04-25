@@ -6,7 +6,7 @@
 # Background 1: Panel, Tooltip
 rounded = 1
 border_width = 0
-background_color = #282828 100
+background_color = #ff85bc 50
 border_color = #000000 0
 background_color_hover = #282828 100
 border_color_hover = #000000 0
@@ -16,7 +16,7 @@ border_color_pressed = #000000 0
 # Background 2: Active task, Urgent task
 rounded = 1
 border_width = 0
-background_color = #f6b655 85
+background_color = #b30050 85
 border_color = #cccccc 40
 background_color_hover = #f6b655 85
 border_color_hover = #cccccc 40
@@ -77,10 +77,10 @@ task_maximum_size = 200 32
 task_padding = 5 0 5
 task_font = sans 7.5
 task_tooltip = 0
-task_font_color = #ffffff 60
-task_active_font_color = #000000 100
-task_urgent_font_color = #000000 100
-task_iconified_font_color = #ffffff 60
+task_font_color = #0f0f0f 84
+task_active_font_color = #0f0f0f 84
+task_urgent_font_color = #0f0f0f 84
+task_iconified_font_color = #0f0f0f 42
 task_icon_asb = 100 0 0
 task_active_icon_asb = 100 0 0
 task_urgent_icon_asb = 100 0 0
@@ -101,7 +101,7 @@ systray_padding = 3 0 3
 systray_background_id = 0
 systray_sort = ascending
 systray_icon_size = 14
-systray_icon_asb = 100 -90 -15
+systray_icon_asb = 70 0 0
 systray_monitor = 2
 
 #-------------------------------------
@@ -119,10 +119,10 @@ launcher_tooltip = 0
 # Clock
 time1_format = %H:%M
 time2_format = 
-time1_font = sans 13
+time1_font = Droid Sans 13
 time1_timezone = 
 time2_timezone = 
-clock_font_color = #ffffff 84
+clock_font_color = #0f0f0f 84
 clock_padding = 2 0
 clock_background_id = 0
 clock_tooltip = 
@@ -138,9 +138,9 @@ clock_dwheel_command =
 battery_tooltip = 1
 battery_low_status = 7
 battery_low_cmd = notify-send "battery low"
-bat1_font = sans 7
-bat2_font = sans 6
-battery_font_color = #ffffff 100
+bat1_font = Droid Sans 7
+bat2_font = Droid Sans 6
+battery_font_color = #0f0f0f 84
 battery_padding = 2 0
 battery_background_id = 0
 battery_hide = 90
