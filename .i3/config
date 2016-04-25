@@ -5,7 +5,7 @@ set $term urxvt
 set $menu dmenu_run
 
 font pango:Droid Sans Mono 8
-output * bg /home/kiljacken/wallpaper.png fill
+#output * bg /home/kiljacken/wallpaper.png fill
 
 gaps inner 5
 gaps outer 5
@@ -145,9 +145,9 @@ bindsym XF86MonBrightnessDown exec "xbacklight -dec 5"
 bindsym XF86Launch3 exec "systemctl hibernate"
 
 # see `man sway-input`
-input 2:14:ETPS/2_Elantech_Touchpad {
-	tap enabled
-}
+#input 2:14:ETPS/2_Elantech_Touchpad {
+#	tap enabled
+#}
 
 for_window [title=".*JACK Audio Connection Kit.*"] floating enable
 for_window [title="ludus"] floating enable

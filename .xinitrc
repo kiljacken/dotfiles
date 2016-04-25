@@ -8,14 +8,13 @@ function wm() {
     mpd ~/config/mpd/mpd.conf &
 
     dropbox &
-    synergy &
-    tint2 &
+    compton -cb -o0 &
 
     feh --bg-scale ~/wallpaper.png
 
     exec $1
 }
 
-[[ -z $1 ]] && wm openbox-session
+[[ -z $1 ]] && wm i3
 
 wm $1
