@@ -1,0 +1,9 @@
+#!/bin/bash
+cd /home/kiljacken/'Wine Prefixes/World of Warcraft/drive_c/Program Files (x86)/Blizzard App'
+if [ ! "$1" = "debug" ]; then
+  export WINEDEBUG=-all
+fi
+export __GL_THREADED_OPTIMIZATIONS=1
+export WINEPREFIX=/home/kiljacken/'Wine Prefixes/World of Warcraft'
+#wine winecfg
+wine /home/kiljacken/'Wine Prefixes/World of Warcraft/drive_c/Program Files (x86)/Blizzard App/Battle.net Launcher.exe'

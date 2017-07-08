@@ -1,3 +1,5 @@
 [user]
 	email = mine809@gmail.com
 	name = Emil Lauridsen
+[color]
+	ui = auto

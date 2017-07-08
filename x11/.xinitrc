@@ -15,6 +15,9 @@ function wm() {
     exec $1
 }
 
-[[ -z $1 ]] && wm i3
+startxfce4
 
-wm $1
+#[[ -z $1 ]] && wm i3
+
+#wm $1
+

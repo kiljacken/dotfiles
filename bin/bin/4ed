@@ -1,3 +1,2 @@
 #!/bin/bash
-cd ~/apps/4coder
-./4ed $@
+~/4coder/4ed $@
