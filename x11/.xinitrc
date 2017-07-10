@@ -20,4 +20,3 @@ startxfce4
 #[[ -z $1 ]] && wm i3
 
 #wm $1
-

@@ -25,7 +25,7 @@ URxvt.scrollstyle: plain
 !-- Transparency --!
 !urxvt*transparent: true
 !urxvt*shading: 15
-urxvt*depth: 32
+!-- urxvt*depth: 32 --!
 urxvt*background: rgba:0000/0000/0200/c800
 
 
