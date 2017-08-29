@@ -7,6 +7,7 @@ call vundle#begin()
 
 " Bundles
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
 " /Bundles
 
 call vundle#end()
@@ -20,6 +21,8 @@ set expandtab
 set autoindent
 set magic
 
-set relativenumber
+set number
 
 syntax on
+
+inoremap <C-@> <C-x><C-o>

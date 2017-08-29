@@ -5,3 +5,4 @@
 .weechat/logs/
 .weechat/weechat.log
 .weechat/script/plugins.xml.gz
+vim/.vim/bundle/*
