@@ -1,7 +1,25 @@
 set -x GOPATH $HOME/dev/go
-set -x PATH $PATH $GOPATH/bin $HOME/bin $HOME/.cargo/bin
-set -x PATH $PATH $HOME/dev/wine-dirs/build32
+
+set -x CCACHE_DIR $HOME/.ccache
+
 set -x XKB_DEFAULT_LAYOUT dk
 set -x XKB_DEFAULT_VARIANT nodeadkeys
-set -x CCACHE_DIR $HOME/.ccache
-set -x PATH /usr/lib/ccache/bin $PATH
+
+function append_path
+  if test -d $argv
+    set -x PATH $PATH $argv
+  end
+end
+
+function prepend_path
+  if test -d $argv
+    set -x PATH $argv $PATH
+  end
+end
+
+append_path $GOPATH/bin
+append_path $HOME/bin
+append_path $HOME/.cargo/bin
+append_path $HOME/dev/wine-dirs/build32
+
+prepend_path /usr/lib/ccache/bin
