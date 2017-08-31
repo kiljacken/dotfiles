@@ -13,7 +13,6 @@ function wm() {
 
     nm-applet &
     dropbox &
-    syncthing-gtk &
 
     exec $1
 }
