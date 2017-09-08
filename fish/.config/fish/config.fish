@@ -23,3 +23,5 @@ append_path $HOME/.cargo/bin
 append_path $HOME/dev/wine-dirs/build32
 
 prepend_path /usr/lib/ccache/bin
+
+set -x FS_LEX_YACC_LIBS /home/kiljacken/lib/FsLexYacc.Runtime.7.0.6/lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10/
