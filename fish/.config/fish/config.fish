@@ -1,4 +1,4 @@
-set -x GOPATH $HOME/sync/dev/go
+set -x GOPATH $HOME/Sync/dev/go
 
 set -x CCACHE_DIR $HOME/.ccache
 
