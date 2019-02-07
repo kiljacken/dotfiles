@@ -1,5 +1,6 @@
-set -x GOPATH $HOME/sync/dev/go
 set -x CCACHE_DIR $HOME/.ccache
+set -x EDITOR vim
+set -x GOPATH $HOME/sync/dev/go
 set -x XKB_DEFAULT_LAYOUT dk
 set -x XKB_DEFAULT_VARIANT nodeadkeys
 
