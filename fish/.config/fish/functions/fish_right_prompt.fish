@@ -23,7 +23,8 @@ function fish_right_prompt
     set -g __fish_git_prompt_color_cleanstate brgreen
   end
 
-  printf '%s %s%s@%s' (__fish_git_prompt) (set_color $fish_color_host) $USER (prompt_hostname)
+  printf '%s ' (__fish_git_prompt)
+  printf '%s%s@%s' (set_color $fish_color_host) $USER (prompt_hostname)
   set_color normal
 end
 
