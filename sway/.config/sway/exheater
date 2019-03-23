@@ -1,0 +1,7 @@
+output DP-1 resolution 2560x1440@143.912003Hz position 0,0
+output DP-2 resolution 2560x1440@60Hz position 2560,0
+
+input "1:1:AT_Translated_Set_2_keyboard" {
+    xkb_layout dk
+    xkb_variant nodeadkeys
+}

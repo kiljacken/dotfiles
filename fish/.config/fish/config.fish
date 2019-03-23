@@ -29,3 +29,8 @@ end
 if [ $GOT_AGENT = 0 ]
   eval (ssh-agent -c)
 end
+
+# Sway specific
+if [ (hostname) = "exheater" ]
+  set WLR_DRM_NO_ATOMIC_GAMMA 1
+end
