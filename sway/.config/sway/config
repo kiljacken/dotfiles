@@ -30,6 +30,7 @@ default_border pixel 1
     for_window [app_id="^launcher$"] floating enable, border none
 
     bindsym Print exec grim -g "$(slurp)" ~/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+    bindsym $mod+p exec swaylock -c 000000
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
