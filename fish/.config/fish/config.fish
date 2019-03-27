@@ -31,6 +31,7 @@ if [ $GOT_AGENT = 0 ]
 end
 
 # Sway specific
+set -x _JAVA_AWT_WM_NONREPARENTING 1
 if [ (hostname) = "exheater" ]
-  set WLR_DRM_NO_ATOMIC_GAMMA 1
+  set -x WLR_DRM_NO_ATOMIC_GAMMA 1
 end
