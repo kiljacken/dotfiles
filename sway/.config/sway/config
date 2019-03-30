@@ -22,8 +22,8 @@ focus_wrapping force
     bindsym $mod+Shift+q kill
 
     # start your launcher
-    bindsym $mod+d exec alacritty --class launcher -e bash -c "compgen -c | sort -u | fzf | xargs -r swaymsg -t command exec"
-    bindsym $mod+Shift+d exec alacritty --class launcher -e bash -c "find /usr/share/applications ~/.local/share/applications/ -name *.desktop | fzf --print0 | xargs -0 -r swaymsg -t command exec dex"
+    bindsym $mod+d exec alacritty --class launcher -e path-menu
+    bindsym $mod+Shift+d exec alacritty --class launcher -e desktop-menu 
     for_window [app_id="^launcher$"] floating enable, border none
 
     bindsym Print exec grim -g "$(slurp)" ~/$(date +'%Y-%m-%d-%H%M%S_grim.png')
