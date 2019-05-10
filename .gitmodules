@@ -1,3 +1,6 @@
 [submodule "vim/bundle/Vundle.vim"]
 	path = vim/.vim/bundle/Vundle.vim
 	url = git@github.com:VundleVim/Vundle.vim.git
+[submodule "external/fish-kubectl-completions"]
+	path = external/fish-kubectl-completions
+	url = git@github.com:evanlucas/fish-kubectl-completions.git
