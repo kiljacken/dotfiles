@@ -1,0 +1,84 @@
+#!/bin/python
+import shutil
+import tempfile
+import sys
+import os
+import subprocess
+import multiprocessing
+
+CONVERT_ARGS = [
+    "-geometry", "1872x1404",
+    "-filter", "Lanczos",
+    "-colorspace", "gray",
+    "-remap", "/home/kiljacken/bin/remarkable-palette.png",
+    "-dither", "FloydSteinberg",
+    "-compress", "lzw",
+    "-density", "96",
+]
+
+def command(cmd, *args):
+    retcode = subprocess.call([cmd] + list(args))
+    if retcode != 0:
+        raise Exception(f"Error while running command: {cmd} {args}")
+
+
+def find_images(target_dir):
+    find_cmd = subprocess.Popen(["find", target_dir, "-type", "f", "-exec", "file", "{}", ";"], stdout=subprocess.PIPE)
+    awk_cmd = subprocess.Popen(["awk", "-F:", "{if ($2 ~/image/) print $1}"], stdin=find_cmd.stdout, stdout=subprocess.PIPE)
+    sort_cmd = subprocess.Popen(["sort", "-n"], stdin=awk_cmd.stdout, stdout=subprocess.PIPE)
+    line = sort_cmd.stdout.readline()
+    while line:
+        yield line.decode('utf8').strip()
+        line = sort_cmd.stdout.readline()
+
+
+def convert_inner(tmp_dir, input_dir, output_file):
+    processed = []
+    pool = multiprocessing.Pool()
+    for image in find_images(input_dir):
+        print("Processing image:", image)
+        output = os.path.basename(image)
+        if '.' in output:
+            output = ''.join(output.split('.')[:-1])
+        output = os.path.join(tmp_dir, output + '.pdf')
+        pool.apply_async(command, ["convert", *CONVERT_ARGS, image, output])
+        processed.append(output)
+    pool.close()
+    pool.join()
+    command("gs", "-dBATCH", "-dNOPAUSE", "-q", "-sDEVICE=pdfwrite", f"-sOutputFile={output_file}", *processed)
+
+
+def convert_dir(input_dir, output_file):
+    with tempfile.TemporaryDirectory() as tmpdir:
+        convert_inner(tmpdir, input_dir, output_file)
+
+
+def convert_file(input_file, output_file):
+    with tempfile.TemporaryDirectory() as tmpdir:
+        command("7z", "x", input_file, f"-o{tmpdir}")
+        convert_inner(tmpdir, tmpdir, output_file)
+
+
+if __name__ == "__main__":
+    if len(sys.argv) < 3:
+        print("USAGE: images2pdf [input] [output]")
+        sys.exit(0)
+
+    input_path = os.path.realpath(sys.argv[1])
+    output_path = os.path.realpath(sys.argv[2])
+    print("input path:", input_path)
+    print("output path:", output_path)
+
+    output_dir = os.path.dirname(output_path)
+    if not os.path.isdir(output_dir):
+        print(f"No such directory: {output_dir}")
+        sys.exit(1)
+
+    input_dir, input_file = None, None
+    if os.path.isdir(input_path):
+        convert_dir(input_path, output_path)
+    elif os.path.isfile(input_path):
+        convert_file(input_path, output_path)
+    else:
+        print(f"No such file or directory {input_path}")
+        sys.exit(1)

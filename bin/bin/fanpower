@@ -1,0 +1,5 @@
+#!/bin/bash
+for fan in $(commando list fans);
+do
+  commando fan $fan power set $1 || exit $?
+done

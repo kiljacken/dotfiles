@@ -1,0 +1,9 @@
+#!/bin/bash
+for file in *.{zip,rar,cbz,cbr}; do
+  OUTPUT=${file%.*}.pdf
+  if [ ! -f "$OUTPUT" ]; then
+    images2pdf "$file" "$OUTPUT"
+    #sem -j+0 images2pdf "\"$file\"" "\"$OUTPUT\""
+  fi
+done
+#sem --wait
