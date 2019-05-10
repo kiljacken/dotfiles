@@ -8,6 +8,10 @@ set -x PATH $PATH $GOPATH/bin $HOME/bin $HOME/.cargo/bin
 
 alias wine32 "env WINEPREFIX=$HOME/.wine32 WINEARCH=win32 wine"
 
+if ! status --is-interactive
+    exit
+end
+
 # Check if an existing ssh-agent exists and re-use it
 set GOT_AGENT 0
 for FILE in /tmp/ssh-*/agent.*;
