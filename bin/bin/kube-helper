@@ -1,0 +1,21 @@
+#!/bin/bash
+case "$1" in
+"dev")
+  kubectl config use-context arn:aws:eks:eu-central-1:039104839133:cluster/limelight-dev
+  ;;
+"prod")
+  kubectl config use-context kiljacken@limelight-prod.eu-central-1.eksctl.io
+  ;;
+"proxy")
+  kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep eks-admin | awk '{print $1}')
+  kubectl proxy
+  ;;
+"")
+  echo "Usage: kube-helper [dev|prod|proxy]"
+  ;;
+*)
+  echo "Unkown command: $1"
+  exit 1
+  ;;
+esac
+

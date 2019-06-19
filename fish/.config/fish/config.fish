@@ -34,6 +34,17 @@ if [ $GOT_AGENT = 0 ]
   eval (ssh-agent -c)
 end
 
+# Load AWS credentials to env
+if [ -f ~/.aws/credentials ]
+  set -x AWS_ACCESS_KEY_ID (cat ~/.aws/credentials | grep aws_access_key_id | cut -d= -f2 | string trim)
+  set -x AWS_SECRET_ACCESS_KEY (cat ~/.aws/credentials | grep aws_secret_access_key | cut -d= -f2 | string trim)
+end
+
+# Setup sccache
+# set -x SCCACHE_BUCKET limelight-sccache2
+# set -x SCCACHE_ENDPOINT s3-eu-west-1.amazonaws.com
+# set -x RUSTC_WRAPPER (which sccache)
+
 # Sway specific
 set -x _JAVA_AWT_WM_NONREPARENTING 1
 if [ (hostname) = "exheater" ]
