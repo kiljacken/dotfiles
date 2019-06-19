@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+import os
+import sys
+
+VIDEO_SIZES = ["240p", "480p", "720p", "1080p"]
+
+where = "."
+if len(sys.argv) > 1:
+    where = sys.argv[1]
+files = os.listdir(where)
+
+videos = []
+for f in files:
+    for idx in range(len(VIDEO_SIZES)):
+        size = VIDEO_SIZES[idx]
+        if size in f:
+            videos.append((f, idx))
+
+grouped = {}
+for (video, index) in videos:
+    without_extension = ".".join(video.split(".")[:-1])
+    without_size = without_extension.replace(VIDEO_SIZES[index], "")
+    if without_size not in grouped:
+        grouped[without_size] = []
+    grouped[without_size].append((video, index))
+
+for group_name in grouped:
+    group = grouped[group_name]
+    
+    best_index = -1
+    for (video, index) in group:
+        best_index = max(best_index, index)
+    
+    keep = [v for (v, i) in group if i == best_index]
+    remove = [v for (v, i) in group if i < best_index]
+    print("Keeping:", keep)
+    print("Removing:", remove)
+
+    for f in remove:
+        f = os.path.join(where, f)
+        os.unlink(f)
