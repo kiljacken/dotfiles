@@ -2,7 +2,7 @@
 import os
 import sys
 
-VIDEO_SIZES = ["240p", "480p", "720p", "1080p"]
+VIDEO_SIZES = ["240p", "480p", "720p", "1080p", "1440p", "2160p"]
 
 where = "."
 if len(sys.argv) > 1:
