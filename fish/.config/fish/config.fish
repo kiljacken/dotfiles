@@ -4,7 +4,7 @@ set -x GOPATH $HOME/sync/dev/go
 set -x XKB_DEFAULT_LAYOUT dk
 set -x XKB_DEFAULT_VARIANT nodeadkeys
 
-set -x PATH $PATH $GOPATH/bin $HOME/bin $HOME/.cargo/bin
+set -x PATH $PATH $GOPATH/bin $HOME/bin $HOME/.local/bin $HOME/.cargo/bin
 
 alias wine32 "env WINEPREFIX=$HOME/.wine32 WINEARCH=win32 wine"
 
