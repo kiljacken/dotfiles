@@ -3,3 +3,5 @@
 	name = Emil Lauridsen
 [color]
 	ui = auto
+[pull]
+	ff = only
