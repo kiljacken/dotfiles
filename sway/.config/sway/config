@@ -213,6 +213,7 @@ bar {
     swaybar_command waybar
 }
 
+exec mako
 exec discord
 
 include /etc/sway/config.d/*
