@@ -80,6 +80,10 @@ focus_wrapping force
     bindsym Print exec grim -g "$(slurp)" ~/$(date +'%Y-%m-%d-%H%M%S_grim.png')
     bindsym $mod+p exec swaylock -c 000000
 
+    # Volume Control
+    bindsym XF86AudioLowerVolume exec pamixer -d 5
+    bindsym XF86AudioRaiseVolume exec pamixer -i 5
+
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
