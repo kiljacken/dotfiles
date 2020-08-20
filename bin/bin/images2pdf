@@ -6,15 +6,27 @@ import os
 import subprocess
 import multiprocessing
 
-CONVERT_ARGS = [
-    "-geometry", "1872x1404",
-    "-filter", "Lanczos",
-    "-colorspace", "gray",
-    "-remap", "/home/kiljacken/bin/remarkable-palette.png",
-    "-dither", "FloydSteinberg",
-    "-compress", "lzw",
-    "-density", "96",
-]
+def convert_args(image, output):
+    return [
+        "convert",
+        image,
+        "-resize", "1404x1872",
+        "-gravity", "center",
+        "-extent", "1404x1872",
+        "-filter", "Lanczos",
+        "-colorspace", "gray",
+        "-remap", "/home/kiljacken/bin/remarkable-palette.png",
+        "-dither", "FloydSteinberg",
+        "-units", "pixelsperinch",
+        "-density", "96",
+        "-compress", "zip",
+        #"-compress", "jpeg",
+        #"-compress", "lzw",
+        #"-page", "A4",
+        #"-quality", "100",
+        "-format", "pdf",
+        output,
+    ]
 
 def command(cmd, *args):
     retcode = subprocess.call([cmd] + list(args))
@@ -41,7 +53,7 @@ def convert_inner(tmp_dir, input_dir, output_file):
         if '.' in output:
             output = ''.join(output.split('.')[:-1])
         output = os.path.join(tmp_dir, output + '.pdf')
-        pool.apply_async(command, ["convert", *CONVERT_ARGS, image, output])
+        pool.apply_async(command, convert_args(image, output))
         processed.append(output)
     pool.close()
     pool.join()
