@@ -83,8 +83,8 @@ for_window [title="^JACK Audio Connection Kit.*QjackCtl$"] floating enable, resi
     bindsym $mod+p exec swaylock -c 000000
 
     # Volume Control
-    bindsym XF86AudioLowerVolume exec pamixer -d 5
-    bindsym XF86AudioRaiseVolume exec pamixer -i 5
+    bindsym XF86AudioLowerVolume exec amixer -c MKII set "PCM" 1%-
+    bindsym XF86AudioRaiseVolume exec amixer -c MKII set "PCM" 1%+
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
