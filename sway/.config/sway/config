@@ -62,6 +62,7 @@ default_border pixel 2
 smart_borders on
 focus_wrapping force
 
+for_window [shell="xwayland"] title_format "%title [XWayland]"
 for_window [title="^JACK Audio Connection Kit.*QjackCtl$"] floating enable, resize set 600 100, move center
 
 ### Key bindings
@@ -221,8 +222,6 @@ bar {
 }
 
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec discord
-exec start_jack.sh
 
 include /etc/sway/config.d/*
 include ~/.config/sway/`hostname`
