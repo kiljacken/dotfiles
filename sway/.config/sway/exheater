@@ -4,5 +4,5 @@ output DP-2 resolution 2560x1440@60Hz position 4000,560
 
 for_window [class="discord"] move output HDMI-A-2
 
-exec discord
+exec discord-launcher
 exec start_jack.sh
