@@ -4,7 +4,7 @@ JACK settings, as persisted by D-Bus object.
 You probably don't want to edit this because
 it will be overwritten next time jackdbus saves.
 -->
-<!-- Thu Oct  1 17:13:21 2020 -->
+<!-- Fri Jan 29 17:30:25 2021 -->
 <jack>
  <engine>
   <option name="driver">alsa</option>
@@ -22,8 +22,8 @@ it will be overwritten next time jackdbus saves.
    <option name="capture">hw:Microphone</option>
    <option name="playback">hw:MKII</option>
    <option name="rate">44100</option>
-   <option name="period">512</option>
-   <option name="nperiods">3</option>
+   <option name="period">256</option>
+   <option name="nperiods">2</option>
    <option name="hwmeter">false</option>
    <option name="duplex">true</option>
    <option name="softmode">false</option>
