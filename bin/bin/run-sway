@@ -1,0 +1,2 @@
+#!/bin/bash
+sway $@ 2>&1 | tee $HOME/sway.log

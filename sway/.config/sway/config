@@ -23,7 +23,8 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg ~/sync/au9cka2iu5e91.png fill
 #
 # Example configuration:
 #
@@ -63,7 +64,8 @@ smart_borders on
 focus_wrapping force
 
 for_window [shell="xwayland"] title_format "%title [XWayland]"
-for_window [title="^JACK Audio Connection Kit.*QjackCtl$"] floating enable, resize set 600 100, move center
+# for_window [title="^JACK Audio Connection Kit.*QjackCtl$"] floating enable, resize set 600 100, move center
+for_window [title="^File Operation Progress$"] floating enable
 
 ### Key bindings
 #
@@ -76,8 +78,7 @@ for_window [title="^JACK Audio Connection Kit.*QjackCtl$"] floating enable, resi
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec alacritty --class launcher -e path-menu
-    bindsym $mod+Shift+d exec alacritty --class launcher -e desktop-menu
+    bindsym $mod+d exec fuzzel
     for_window [app_id="^launcher$"] floating enable, border none
 
     bindsym Print exec grim -g "$(slurp)" ~/$(date +'%Y-%m-%d-%H%M%S_grim.png')
@@ -222,6 +223,9 @@ bar {
 }
 
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# exec /usr/bin/gammastep-indicator
+exec mako
+#exec xembedsniproxy
 
 include /etc/sway/config.d/*
 include ~/.config/sway/`hostname`

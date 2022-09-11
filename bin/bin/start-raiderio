@@ -1,0 +1,2 @@
+#!/bin/sh
+nm-online && exec ~/Applications/RaiderIO_Client_*.AppImage

@@ -1,0 +1,6 @@
+#!/bin/bash
+PID=$(pidof $1)
+shift 1
+for pid in $PID; do
+  renice $@ -p $pid
+done

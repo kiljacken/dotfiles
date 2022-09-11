@@ -2,7 +2,8 @@ set -x CCACHE_DIR $HOME/.ccache
 set -x EDITOR vim
 set -x GOPATH $HOME/sync/dev/go
 
-set -x PATH $PATH $GOPATH/bin $HOME/bin $HOME/.local/bin $HOME/.cargo/bin
+set --path -xa PATH $GOPATH/bin $HOME/bin $HOME/.local/bin $HOME/.cargo/bin
+# set --path -xa XDG_DATA_DIRS /var/lib/flatpak/exports/share $HOME/.local/share/flatpak/exports/share
 
 alias wine32 "env WINEPREFIX=$HOME/.wine32 WINEARCH=win32 wine"
 

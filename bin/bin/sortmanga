@@ -1,0 +1,81 @@
+#!/usr/bin/env python3
+import os
+import sys
+import re
+import shutil
+from collections import namedtuple
+from difflib import SequenceMatcher
+
+MANGA_DIR = "/bigdata/media/luud/hen/manga2/"
+FILE_TYPES = ["pdf", "zip", "rar", "7z", "cbz", "cbr"]
+
+class Manga:
+    def __init__(self, event, circle, title, filename):
+        self.event = event
+        self.circle = circle
+        self.title = title
+        self.filename = filename
+
+def parse_filename(name):
+    pat = re.compile(r"^(?:\((.+?)\))? ?(?:\[(.+?)\])? ?(.+?) ?([\[\(].*)?\.[a-z]{2,3}$")
+    match = pat.match(name)
+    assert match
+
+    event = match.group(1)
+    circle = match.group(2)
+    title = match.group(3)
+    rest = match.group(4)
+
+    print(name)
+    print(f"Event: {event}, Circle: {circle}, Title: {title}, Rest: {rest}")
+    print()
+    return Manga(event, circle, title, name)
+
+where = "."
+if len(sys.argv) > 1:
+    where = sys.argv[1]
+files = os.listdir(where)
+
+manga = []
+for f in files:
+    ext = f.split(".")[-1]
+    if ext in FILE_TYPES:
+        print(f)
+        manga.append(f)
+
+authors = list(os.listdir(MANGA_DIR))
+pat = re.compile(r"^(.+?)(?:\ \(.+?\))?$")
+for item in map(parse_filename, manga):
+    if item.circle:
+        print(item.circle)
+        match = pat.match(item.circle)
+        item.circle = match.group(1)
+    else:
+        item.circle = "_unknown"
+
+    print(item.circle)
+    if item.circle not in authors:
+        best_name = None
+        best_ratio = 0.0
+        for author in authors:
+            ratio = SequenceMatcher(None, item.circle, author).ratio()
+            print(author, item.circle, ratio)
+            if ratio > best_ratio:
+                best_name = author
+                best_ratio = ratio
+
+        if best_name is None or best_ratio < 0.8:
+            authors.append(item.circle)
+        else:
+            item.circle = best_name
+        print("->", item.circle)
+
+    dest_dir = os.path.join(MANGA_DIR, item.circle)
+    try: os.mkdir(dest_dir)
+    except: pass
+
+    ext = item.filename.split(".")[-1]
+    dest_name = f"{item.title}.{ext}"
+
+    shutil.copy(item.filename, os.path.join(dest_dir, dest_name))
+
